@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+:root {
+    --bg-main: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+    --wrapper-bg: #f8f8f8;
+    --card-bg: #fff;
+    --card-front-color: #6563ff;
+    --text-color: #222;
+    --shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+body {
+    background: var(--bg-main);
+    color: var(--text-color);
+}
+.wrapper {
+    background: var(--wrapper-bg);
+}
+.cards .card .view {
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+}
+.card .front-view span {
+    color: var(--card-front-color);
+}
+
+/* Dark mode styles */
+.dark-mode {
+    --bg-main: linear-gradient(135deg, #232336 0%, #3a2d6a 100%);
+    --wrapper-bg: #232336;
+    --card-bg: #232336;
+    --card-front-color: #f8f8f8;
+    --text-color: #f8f8f8;
+    --shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Rest of your existing CSS, replacing hardcoded colors with variables */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--bg-main);
+    color: var(--text-color);
+}
+.wrapper{
+    height: 400px;
+    width: 400px;
+    padding: 25px;
+    background: var(--wrapper-bg);
+    border-radius: 10px;
+}
+.cards, .card, .view{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cards{
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.cards .card{
+    cursor: pointer;
+    position: relative;
+    perspective: 800px;
+    transform-style: preserve-3d;
+    height: calc(100% / 4 - 10px);
+    width: calc(100% / 4 - 10px);
+}
+.card.shake{
+    animation: shake 0.35s ease-in-out;
+}
+@keyframes shake{
+    0% , 100%{
+        transform: translateX(0);
+    }
+    20%{
+        transform: translateX(-13px);
+    }
+    40%{
+        transform: translateX(13px);
+    }
+    60%{
+        transform: translateX(-8px);
+    }
+    80%{
+        transform: translateX(8px);
+    }
+}
+.cards .card .view{
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    pointer-events: none;
+    position: absolute;
+    background: var(--card-bg);
+    transition: transform 0.25s linear;
+    backface-visibility: hidden;
+    box-shadow: var(--shadow);
+    border-radius: 7px;
+}
+.card .front-view span{
+    color: var(--card-front-color);
+    font-size: 40px;
+}
+.card .back-view{
+    transform: rotateY(-180deg);
+}
+.card .back-view img{
+    max-width: 45px;
+}
+.card.flip .front-view{
+    transform: rotateY(180deg);
+}
+.card.flip .back-view{
+    transform: rotateY(0);
+}
+
+/* Beautiful Toggle Switch Styles */
+.toggle-switch {
+  display: inline-block;
+  width: 56px;
+  height: 32px;
+}
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: #e0e0e0;
+  border-radius: 32px;
+  transition: background 0.3s;
+  width: 56px;
+  height: 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.slider:before {
+  content: '\2600'; /* sun icon */
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s, background 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #fbc02d;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+input:checked + .slider {
+  background: #232336;
+}
+input:checked + .slider:before {
+  content: '\1F319'; /* moon icon */
+  transform: translateX(24px);
+  background: #232336;
+  color: #fff;
+}
+/* Optional: focus ring for accessibility */
+.toggle-switch input:focus + .slider {
+  box-shadow: none;
+}
+
+.header-bar {
+  position: absolute;
+  top: 20px;
+  left: 32px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+.logo-img {
+  height: 48px;
+  width: auto;
+  margin-right: 16px;
+  display: block;
+  border-radius: 8px;
+}
+.game-title {
+  position: static;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 2px;
+  color: var(--card-front-color);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  text-align: left;
+  z-index: 10;
+}
+
+.dark-mode .game-title {
+  color: #f8f8f8;
+  text-shadow: 0 2px 12px rgba(58,45,106,0.25);
+}
+
+/* Win Modal Styles */
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: var(--wrapper-bg);
+  color: var(--text-color);
+  padding: 32px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  text-align: center;
+  min-width: 280px;
+  animation: popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.15); opacity: 1; }
+  80% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+#confettiCanvas {
+  z-index: 1100 !important;
+}
+.modal-content h2 {
+  margin-bottom: 16px;
+  font-size: 2rem;
+}
+#stats {
+  margin-bottom: 24px;
+  font-size: 1.1rem;
+}
+#playAgainBtn {
+  background: var(--card-front-color);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#playAgainBtn:hover {
+  background: #4b47b5;
+}
+.dark-mode .modal-content {
+  background: #232336;
+  color: #f8f8f8;
+}
+.dark-mode #playAgainBtn {
+  background: #4b47b5;
+  color: #fff;
+}
+.dark-mode #playAgainBtn:hover {
+  background: #6563ff;
+  color: #fff;
+}
+
+/* Responsive Design */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+.cards .card {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: unset;
+  max-height: unset;
+}
+@media (max-width: 600px) {
+  .wrapper {
+    width: 98vw;
+    height: 98vw;
+    max-width: 100vw;
+    max-height: 100vw;
+    min-width: unset;
+    min-height: unset;
+    padding: 4vw;
+    border-radius: 0;
+  }
+  .cards {
+    gap: 4vw;
+  }
+  .cards .card {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+  }
+  .card .front-view span {
+    font-size: 1.7rem;
+  }
+  .card .back-view img {
+    max-width: 28px;
+  }
+  .modal-content {
+    min-width: 80vw;
+    padding: 18px 6px;
+    font-size: 1rem;
+  }
+  .modal-content h2 {
+    font-size: 1.3rem;
+  }
+  #playAgainBtn {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
+  .header-bar {
+    left: 10px;
+    top: 10px;
+  }
+  .logo-img {
+    height: 32px;
+    margin-right: 8px;
+  }
+  .game-title {
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 400px) {
+  .wrapper {
+    width: 99vw;
+    height: 99vw;
+    padding: 1vw;
+  }
+  .cards {
+    gap: 2vw;
+  }
+  .modal-content {
+    min-width: 95vw;
+    padding: 8px 2px;
+    font-size: 0.95rem;
+  }
+  .modal-content h2 {
+    font-size: 1.1rem;
+  }
+  #playAgainBtn {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 350px) {
+  .cards .card {
+    min-width: 28px;
+    min-height: 28px;
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .modal-content {
+    min-width: 99vw;
+    padding: 4px 1px;
+    font-size: 0.85rem;
+  }
+}

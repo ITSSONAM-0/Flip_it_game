@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flip It! Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body>
+    <label
+      class="toggle-switch"
+      style="position: absolute; top: 20px; right: 20px; z-index: 10"
+    >
+      <input type="checkbox" id="darkModeToggle" />
+      <span class="slider"></span>
+    </label>
+    <div class="header-bar">
+      <img src="Images/logo.png" alt="Flip Royale Logo" class="logo-img" />
+      <h1 class="game-title">Flip It!</h1>
+    </div>
+    <div class="wrapper">
+      <ul class="cards">
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-1.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-2.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-3.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-4.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-5.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-6.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-7.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-8.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-1.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-2.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-3.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-4.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-5.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-6.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-7.png" alt="card-img" />
+          </div>
+        </li>
+        <li class="card">
+          <div class="view front-view">
+            <span class="material-icons">question_mark </span>
+          </div>
+          <div class="view back-view">
+            <img src="Images/img-8.png" alt="card-img" />
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <canvas
+      id="confettiCanvas"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 1100;
+      "
+    ></canvas>
+    <div id="winModal" class="modal" style="display: none">
+      <div class="modal-content">
+        <div style="font-size: 3rem; margin-bottom: 10px">🥳</div>
+        <h2>Congratulations! 🎉</h2>
+        <p id="stats"></p>
+        <button id="playAgainBtn">Play Again</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
