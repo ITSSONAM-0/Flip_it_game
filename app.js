@@ -88,10 +88,13 @@ function runConfetti() {
         confettiCtx.ellipse(p.x, p.y, p.r, p.r/2, p.tilt, 0, 2 * Math.PI);
         confettiCtx.fillStyle = p.color;
         confettiCtx.fill();
+
         p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
         p.x += Math.sin(0.01 * p.d);
+
         p.tiltAngle += p.tiltAngleIncremental;
         p.tilt = Math.sin(p.tiltAngle) * 15;
+
         if (p.y > confettiCanvas.height) {
             confettiParticles[i] = createConfettiParticle();
             confettiParticles[i].y = -10;
@@ -123,7 +126,7 @@ playAgainBtn.addEventListener('click', () => {
 });
 
 function flipCard(e) {
-    let clickedCard = e.target; // getting user clicked card
+    let clickedCard = e.target; 
     if(clickedCard !== cardOne && !disableDeck){
         clickedCard.classList.add("flip");
         if(!cardOne){
@@ -132,66 +135,68 @@ function flipCard(e) {
                 resetTimer();
                 startTimer();
             }
-            //return the cardOne value to clickedCard
             return cardOne = clickedCard;
         }
         cardTwo = clickedCard;
         disableDeck = true;
-        let cardOneImg = cardOne.querySelector("img").src,
-        cardTwoImg = cardTwo.querySelector("img").src;
+
+        let cardOneImg = cardOne.querySelector("img").src;
+        let cardTwoImg = cardTwo.querySelector("img").src;
         moves++;
+
         matchCards(cardOneImg, cardTwoImg);
     }
 }
 
 function matchCards(img1, img2){
-    if(img1 === img2){ // if two cards img matched;
-        matchedCard++; //increment matched value 1
-        //if matched value is 8 that means user has matched all the cards (8*2 = 16 cards)
-        if(matchedCard == 8 ){
+    if(img1 === img2){
+        matchedCard++;
+
+        if(matchedCard == 8){
            setTimeout(() => {
             stopTimer();
             showWinModal();
            }, 800);
         }
+
         cardOne.removeEventListener("click", flipCard);
         cardTwo.removeEventListener("click", flipCard);
-        cardOne = cardTwo = ""; // setting both card value to blank
+        cardOne = cardTwo = "";
         return disableDeck = false;
     }
 
     setTimeout(() => {
-        //adding shake class to both card after 400ms
         cardOne.classList.add("shake");
         cardTwo.classList.add("shake");
     },400);
 
     setTimeout(() => {
-        //removing both shake & flip classes from the both card after 1.2 seconds
         cardOne.classList.remove("shake", "flip");
         cardTwo.classList.remove("shake", "flip");
-        cardOne = cardTwo = ""; // setting both card value to blank
+        cardOne = cardTwo = "";
         disableDeck = false;
     },1200);
-
 }
 
 function shuffleCard(){
     matchedCard = 0;
     cardOne = cardTwo = "";
-    //creating array of 16 items and each item is repeated twice
-    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8];
-    arr.sort(() => Math.random() > 0.5 ? 1 : -1); //sorting array item randomly 
 
-    //removing flip class from all cards and pasing random images to each card
+    let arr = [1,2,3,4,5,6,7,8, 1,2,3,4,5,6,7,8];
+    arr.sort(() => Math.random() > 0.5 ? 1 : -1);
+
     disableDeck = false;
 
-    cards.forEach((card, index) =>{ 
+    cards.forEach((card, index) => { 
         card.classList.remove("flip");
         let imgTag = card.querySelector("img");
-        imgTag.src = `Images/img-${arr[index]}.png`;
-        card.addEventListener("click",flipCard);
+
+        // ✅ Correct image path
+        imgTag.src = `images/img-${arr[index]}.png`;
+
+        card.addEventListener("click", flipCard);
     });
+
     moves = 0;
     resetTimer();
     gameStarted = false;
@@ -200,15 +205,14 @@ function shuffleCard(){
 
 shuffleCard();
 
-cards.forEach(card =>{ //adding click event to all cards
-    card.addEventListener("click",flipCard);
+cards.forEach(card => {
+    card.addEventListener("click", flipCard);
 });
 
-// Dark mode toggle logic for checkbox
+// DARK MODE
 const darkModeToggle = document.getElementById('darkModeToggle');
 const body = document.body;
 
-// Load dark mode preference
 if (localStorage.getItem('darkMode') === 'enabled') {
     body.classList.add('dark-mode');
     darkModeToggle.checked = true;
